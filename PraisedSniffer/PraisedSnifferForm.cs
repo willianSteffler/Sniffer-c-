@@ -46,7 +46,7 @@ namespace PraisedSniffer
         {
             if (buttonStartStop.Text.Equals("Start"))
             {
-                if (mInterfaces.SelectedIndex > 0 && mInterfaces.SelectedIndex < interfaceList.Count)
+                if (mInterfaces.SelectedIndex > -1 && mInterfaces.SelectedIndex < interfaceList.Count)
                 {
                     buttonStartStop.Text = "Stop";
                     listPackets.Items.Clear();
