@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>PraisedSniffer</RootNamespace>
     <AssemblyName>PraisedSniffer</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -33,7 +33,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject>PraisedSniffer.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IP2Location, Version=8.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IP2Location.IPGeolocation.8.4.0\lib\netstandard2.0\IP2Location.dll</HintPath>
+    </Reference>
     <Reference Include="PacketDotNet, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PacketDotNet.0.16.0\lib\PacketDotNet.dll</HintPath>
     </Reference>
@@ -68,6 +76,7 @@
     <Compile Include="IIpHeader.cs" />
     <Compile Include="IPHeaderV4.cs" />
     <Compile Include="IPHeaderV6.cs" />
+    <Compile Include="ExtendeIpAddress.cs" />
     <Compile Include="PraisedSnifferForm.cs">
       <SubType>Form</SubType>
     </Compile>

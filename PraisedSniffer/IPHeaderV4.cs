@@ -22,7 +22,7 @@ namespace PraisedSniffer
 
         private short _checksum;
 
-        public IPHeaderV4(BinaryReader binaryReader)
+        public IPHeaderV4(BinaryReader binaryReader,IP2Location.Component ip2l)
         {
             try
             {
@@ -45,9 +45,9 @@ namespace PraisedSniffer
 
                 _checksum = IPAddress.NetworkToHostOrder(binaryReader.ReadInt16());
 
-                SourceAddress = new IPAddress((uint)(binaryReader.ReadInt32()));
+                SourceAddress = new ExtendedIpAddress((uint)(binaryReader.ReadInt32()), ip2l);
 
-                DestinationAddress = new IPAddress((uint)(binaryReader.ReadInt32()));
+                DestinationAddress = new ExtendedIpAddress((uint)(binaryReader.ReadInt32()), ip2l);
             }
             catch (Exception ex)
             {
@@ -160,8 +160,8 @@ namespace PraisedSniffer
             }
         }
 
-        public IPAddress SourceAddress { get; }
+        public ExtendedIpAddress SourceAddress { get; }
 
-        public IPAddress DestinationAddress { get; }
+        public ExtendedIpAddress DestinationAddress { get; }
     }
 }
