@@ -5,5 +5,8 @@
     <Setting Name="DbFile" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ip2l_url" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://www.ip2location.com/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

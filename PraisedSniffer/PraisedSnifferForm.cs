@@ -59,6 +59,8 @@ namespace PraisedSniffer
             {
                 LoadIp2l(Properties.Settings.Default.DbFile);
             }
+
+            Focus();
         }
 
         private void buttonStartStop_Click(object sender, EventArgs e)
@@ -325,6 +327,8 @@ namespace PraisedSniffer
                 else
                 {
                     MessageBox.Show("Não foi possível abrir o arquivo do banco de dados", "Falha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Properties.Settings.Default.DbFile = "";
+                    Properties.Settings.Default.Save();
                 }
             }
 
@@ -335,7 +339,7 @@ namespace PraisedSniffer
         {
             if (this.ip2l == null)
             {
-                MessageBox.Show("Por favor selecione um arquivo válido para o banco de dados para ter acesso as informações do Geo-IP",
+                MessageBox.Show($"Por favor selecione um arquivo válido para o banco de dados para ter acesso as informações do Geo-IP, faça o download em {Properties.Settings.Default.ip2l_url}",
                     "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }

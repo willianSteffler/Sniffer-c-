@@ -34,5 +34,15 @@ namespace PraisedSniffer.Properties {
                 this["DbFile"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.ip2location.com/")]
+        public string ip2l_url {
+            get {
+                return ((string)(this["ip2l_url"]));
+            }
+        }
     }
 }
