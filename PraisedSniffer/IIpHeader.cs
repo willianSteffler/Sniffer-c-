@@ -8,5 +8,7 @@ namespace PraisedSniffer
 {
     interface IIpHeader
     {
+        ExtendedIpAddress DestinationAddress { get; }
+        ExtendedIpAddress SourceAddress { get; }
     }
 }

@@ -20,7 +20,7 @@ namespace PraisedSniffer
         private byte[] _sourceAddress = new byte[16];
         private byte[] _destinationAddress = new byte[16];
 
-        public IPHeaderV6(BinaryReader binaryReader)
+        public IPHeaderV6(BinaryReader binaryReader,IP2Location.Component ip2l)
         {
             _versionTrafficClassAndFlowLabel = (uint)IPAddress.NetworkToHostOrder(binaryReader.ReadInt32());
 
@@ -35,14 +35,15 @@ namespace PraisedSniffer
                 _sourceAddress[i] = binaryReader.ReadByte();
             }
 
-            SourceAddress = new IPAddress(_sourceAddress);
+            SourceAddress = new ExtendedIpAddress(_sourceAddress,ip2l);
+            SourceAddress.ToString();
 
             for (int i = 0; i < 16; i++)
             {
                 _destinationAddress[i] = binaryReader.ReadByte();
             }
 
-            DestinationAddress = new IPAddress(_destinationAddress);
+            DestinationAddress = new ExtendedIpAddress(_destinationAddress,ip2l);
         }
 
         public string Version
@@ -145,8 +146,8 @@ namespace PraisedSniffer
             }
         }
 
-        public IPAddress SourceAddress { get; }
+        public ExtendedIpAddress SourceAddress { get; }
 
-        public IPAddress DestinationAddress { get; }
+        public ExtendedIpAddress DestinationAddress { get; }
     }
 }

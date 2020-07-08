@@ -7,6 +7,20 @@ using System.Threading.Tasks;
 
 namespace PraisedSniffer
 {
+    public class TCPHeaderFlags
+    {
+        public string URG { get; set; }
+        public string Ack {get;set;}
+        public string Psh {get;set;}
+        public string Rst {get;set;}
+        public string Syn {get;set;}
+        public string Fin {get;set;}
+        public string ECN {get;set;}
+        public string CWR { get; set;}
+        public string NS { get; set;}
+        public string AllFlags { get; set; }
+    }
+
     public class TCPHeader
     {
         TcpPacket _tcpPacket;
@@ -72,19 +86,23 @@ namespace PraisedSniffer
             }
         }
 
-        public string Flags
+        public TCPHeaderFlags Flags
         {
             get
             {
-                return  "\r\n\t\tUrgente: " + (_tcpPacket.Urg ? "setado" : "não setado") +
-                        "\r\n\t\tACK: " + (_tcpPacket.Ack ? "setado" : "não setado") +
-                        "\r\n\t\tPSH: " + (_tcpPacket.Psh ? "setado" : "não setado") +
-                        "\r\n\t\tRST: " + (_tcpPacket.Rst ? "setado" : "não setado") +
-                        "\r\n\t\tSYN: " + (_tcpPacket.Syn ? "setado" : "não setado") +
-                        "\r\n\t\tFIN: " + (_tcpPacket.Fin ? "setado" : "não setado") +
-                        "\r\n\t\tECN: " + (_tcpPacket.ECN ? "setado" : "não setado") +
-                        "\r\n\t\tCWR: " + (_tcpPacket.CWR ? "setado" : "não setado") +
-                        "\r\n\t\tNS: " + (_tcpPacket.NS ? "setado" : "não setado");
+                return new TCPHeaderFlags()
+                {
+                    NS = _tcpPacket.NS   ? "setado" : "não setado",
+                    CWR = _tcpPacket.CWR ? "setado" : "não setado",
+                    ECN = _tcpPacket.ECN ? "setado" : "não setado",
+                    URG = _tcpPacket.Urg ? "Ssetado": "não setado",
+                    Ack = _tcpPacket.Ack ? "setado" : "não setado",
+                    Psh = _tcpPacket.Psh ? "setado" : "não setado",
+                    Rst = _tcpPacket.Rst ? "setado" : "não setado",
+                    Syn = _tcpPacket.Syn ? "setado" : "não setado",
+                    Fin = _tcpPacket.Fin ? "setado" : "não setado",
+                    AllFlags = string.Format("0x{0:x2}", _tcpPacket.AllFlags)
+                };
             }
         }
 
