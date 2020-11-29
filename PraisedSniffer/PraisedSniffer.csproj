@@ -73,6 +73,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICMPv4Header.cs" />
+    <Compile Include="ICMPv6Header.cs" />
     <Compile Include="IIpHeader.cs" />
     <Compile Include="IPHeaderV4.cs" />
     <Compile Include="IPHeaderV6.cs" />

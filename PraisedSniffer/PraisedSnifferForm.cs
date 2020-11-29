@@ -43,19 +43,21 @@ namespace PraisedSniffer
             listPackets.Columns.Add("Destino", 200, HorizontalAlignment.Center);
             listPackets.Columns.Add("Protocolo", 70, HorizontalAlignment.Center);
 
-            if(Properties.Settings.Default.DbFile == null || Properties.Settings.Default.DbFile == "")
+            if (Properties.Settings.Default.DbFile == null || Properties.Settings.Default.DbFile == "")
             {
-                if(MessageBox.Show("Nenhum arquivo de banco de dados foi carregado, deseja carrega-lo agora ?",
+                if (MessageBox.Show("Nenhum arquivo de banco de dados foi carregado, deseja carrega-lo agora ?",
                     "Carregar arquivo",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     LoadIp2l("");
-                } else
+                }
+                else
                 {
                     WarnIp2lNotLoadeded();
                 }
-            } else
+            }
+            else
             {
                 LoadIp2l(Properties.Settings.Default.DbFile);
             }
@@ -153,12 +155,12 @@ namespace PraisedSniffer
 
                 if (((PacketDotNet.EthernetPacket)packet).Type == PacketDotNet.EthernetPacketType.IpV4)
                 {
-                    ipHeader = new IPHeaderV4(binaryReader,this.ip2l);
+                    ipHeader = new IPHeaderV4(binaryReader, this.ip2l);
                     MakeInformationIP(ipHeader);
                 }
                 else if (((PacketDotNet.EthernetPacket)packet).Type == PacketDotNet.EthernetPacketType.IpV6)
                 {
-                    ipHeader = new IPHeaderV6(binaryReader,this.ip2l);
+                    ipHeader = new IPHeaderV6(binaryReader, this.ip2l);
                     MakeInformationIP(ipHeader);
                 }
                 else
@@ -183,6 +185,26 @@ namespace PraisedSniffer
                         var udpHeader = new UDPHeader(udpPacket);
                         MakeInformationUDP(udpHeader);
                     }
+                }
+                else if (protocol.Equals("ICMP"))
+                {
+                    var icmpv4Packet = (ICMPv4Packet)packet.Extract(typeof(ICMPv4Packet));
+                    if (icmpv4Packet != null)
+                    {
+                        var icmpv4Header = new ICMPv4Header(icmpv4Packet);
+                        MakeInformationICMPv4(icmpv4Header);
+                    }
+
+                }
+                else if (protocol.Equals("ICMPV6"))
+                {
+                    var icmpv6Packet = (ICMPv6Packet)packet.Extract(typeof(ICMPv6Packet));
+                    if (icmpv6Packet != null)
+                    {
+                        var icmpv6Header = new ICMPv6Header(icmpv6Packet);
+                        MakeInformationICMPv6(icmpv6Header);
+                    }
+
                 }
 
                 treeView1.ExpandAll();
@@ -210,7 +232,7 @@ namespace PraisedSniffer
                 });
 
             }
-            else if(ipHeader is IPHeaderV6)
+            else if (ipHeader is IPHeaderV6)
             {
                 var ipHeaderv6 = (IPHeaderV6)ipHeader;
 
@@ -289,6 +311,31 @@ namespace PraisedSniffer
             treeView1.Nodes.Add(udpNode);
         }
 
+        private void MakeInformationICMPv4(ICMPv4Header icmpv4Header)
+        {
+            TreeNode icmpv4Node = new TreeNode("ICMPv4", new TreeNode[]{
+                    new TreeNode($"Checksum: {icmpv4Header.Checksum}"),
+                    new TreeNode($"Dados: {icmpv4Header.Dados}"),
+                    new TreeNode($"ID: {icmpv4Header.ID}"),
+                    new TreeNode($"Sequência: {icmpv4Header.Sequencia}"),
+                    new TreeNode($"Tipo de Código: {icmpv4Header.TipoCodigo}")
+            });
+
+            treeView1.Nodes.Add(icmpv4Node);
+        }
+
+        private void MakeInformationICMPv6(ICMPv6Header icmpv6Header)
+        {
+            TreeNode icmpv6Node = new TreeNode("ICMPv6", new TreeNode[]{
+                    new TreeNode($"Checksum: {icmpv6Header.Checksum}"),
+                    new TreeNode($"Código: {icmpv6Header.Codigo}"),
+                    new TreeNode($"Dados: {icmpv6Header.Dados}"),
+                    new TreeNode($"Tipo: {icmpv6Header.Tipo}")
+            });
+
+            treeView1.Nodes.Add(icmpv6Node);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             LoadIp2l("");
@@ -297,7 +344,7 @@ namespace PraisedSniffer
         void LoadIp2l(string binFile)
         {
             IP2Location.Component ip2l;
-            if(binFile == "" || binFile == null)
+            if (binFile == "" || binFile == null)
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
@@ -312,7 +359,7 @@ namespace PraisedSniffer
                 }
             }
 
-            if(binFile != "" && binFile != null)
+            if (binFile != "" && binFile != null)
             {
                 ip2l = new IP2Location.Component();
                 ip2l.UseMemoryMappedFile = true;
