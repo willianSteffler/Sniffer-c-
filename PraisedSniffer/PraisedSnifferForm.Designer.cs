@@ -24,7 +24,7 @@
 
         /// <summary>
         /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// the contents of this method with the code edichrome://vivaldi-webui/startpage?section=Speed-dials&activeSpeedDialIndex=0&background-color=#2e2f37tor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -35,11 +35,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label2 = new System.Windows.Forms.Label();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -49,18 +51,16 @@
             // mInterfaces
             // 
             this.mInterfaces.FormattingEnabled = true;
-            this.mInterfaces.Location = new System.Drawing.Point(18, 34);
-            this.mInterfaces.Margin = new System.Windows.Forms.Padding(4);
+            this.mInterfaces.Location = new System.Drawing.Point(14, 28);
             this.mInterfaces.Name = "mInterfaces";
-            this.mInterfaces.Size = new System.Drawing.Size(308, 24);
+            this.mInterfaces.Size = new System.Drawing.Size(151, 21);
             this.mInterfaces.TabIndex = 1;
             // 
             // buttonStartStop
             // 
-            this.buttonStartStop.Location = new System.Drawing.Point(334, 13);
-            this.buttonStartStop.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonStartStop.Location = new System.Drawing.Point(286, 9);
             this.buttonStartStop.Name = "buttonStartStop";
-            this.buttonStartStop.Size = new System.Drawing.Size(162, 51);
+            this.buttonStartStop.Size = new System.Drawing.Size(92, 41);
             this.buttonStartStop.TabIndex = 2;
             this.buttonStartStop.Text = "Start";
             this.buttonStartStop.UseVisualStyleBackColor = true;
@@ -74,11 +74,10 @@
             this.listPackets.FullRowSelect = true;
             this.listPackets.GridLines = true;
             this.listPackets.HideSelection = false;
-            this.listPackets.Location = new System.Drawing.Point(4, 25);
-            this.listPackets.Margin = new System.Windows.Forms.Padding(4);
+            this.listPackets.Location = new System.Drawing.Point(3, 20);
             this.listPackets.MultiSelect = false;
             this.listPackets.Name = "listPackets";
-            this.listPackets.Size = new System.Drawing.Size(480, 400);
+            this.listPackets.Size = new System.Drawing.Size(402, 326);
             this.listPackets.TabIndex = 3;
             this.listPackets.UseCompatibleStateImageBehavior = false;
             this.listPackets.View = System.Windows.Forms.View.Details;
@@ -87,10 +86,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 17);
+            this.label1.Size = new System.Drawing.Size(120, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Informações do Pacote:";
             // 
@@ -99,7 +97,8 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(12, 67);
+            this.splitContainer1.Location = new System.Drawing.Point(9, 54);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -112,71 +111,106 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.treeView1);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(1057, 429);
-            this.splitContainer1.SplitterDistance = 488;
+            this.splitContainer1.Size = new System.Drawing.Size(883, 349);
+            this.splitContainer1.SplitterDistance = 407;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 4);
+            this.label2.Location = new System.Drawing.Point(2, 3);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 17);
+            this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Pacotes";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 17);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Interface";
-            // 
-            // textBox1
-            // 
-            this.textBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.textBox1.Location = new System.Drawing.Point(511, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(373, 22);
-            this.textBox1.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(508, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 17);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Banco de dados";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(890, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 28);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Browse";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // treeView1
             // 
             this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.treeView1.Location = new System.Drawing.Point(7, 25);
+            this.treeView1.Location = new System.Drawing.Point(5, 20);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(2);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(554, 400);
+            this.treeView1.Size = new System.Drawing.Size(466, 326);
             this.treeView1.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 13);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Interface";
+            // 
+            // textBox1
+            // 
+            this.textBox1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.textBox1.Location = new System.Drawing.Point(383, 29);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(281, 20);
+            this.textBox1.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(381, 13);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Banco de dados";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(668, 27);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Browse";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(171, 27);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(109, 21);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.Items.Add("Todos");
+            this.comboBox1.Items.Add("TCP");
+            this.comboBox1.Items.Add("UDP");
+            this.comboBox1.Items.Add("ICMP");
+            this.comboBox1.Items.Add("ICMPV6");
+            this.comboBox1.Items.Add("IP");
+            this.comboBox1.Items.Add("IGMP");
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(168, 13);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Filtro por pacote";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // PraisedSnifferForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1081, 508);
+            this.ClientSize = new System.Drawing.Size(901, 413);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
@@ -185,7 +219,6 @@
             this.Controls.Add(this.buttonStartStop);
             this.Controls.Add(this.mInterfaces);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PraisedSnifferForm";
             this.Text = "PraisedSniffer";
             this.Load += new System.EventHandler(this.PraisedSnifferForm_Load);
@@ -212,6 +245,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label5;
     }
 }
 

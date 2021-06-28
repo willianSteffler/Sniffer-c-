@@ -35,7 +35,7 @@ namespace PraisedSniffer
                 return Encoding.Default.GetString(_icmpv6Packet.Bytes).Substring(8);
             }
         }
-
+         
         public string Tipo
         {
             get

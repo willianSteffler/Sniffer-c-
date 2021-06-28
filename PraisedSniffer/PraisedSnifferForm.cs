@@ -13,15 +13,23 @@ namespace PraisedSniffer
     public partial class PraisedSnifferForm : Form
     {
         List<LibPcapLiveDevice> interfaceList = new List<LibPcapLiveDevice>();
+        String filtroSelecionado = "";
         Dictionary<int, Packet> capturedPackets_list = new Dictionary<int, Packet>();
         LibPcapLiveDevice device;
         IP2Location.Component ip2l = null;
         Thread sniffing;
         int packetNumber;
 
+        private void ComboBox1_SelectedIndexChanged(object sender,System.EventArgs e)
+        {
+            filtroSelecionado = comboBox1.SelectedItem.ToString();
+        }
+
         public PraisedSnifferForm()
         {
             InitializeComponent();
+
+            comboBox1.SelectedIndexChanged += new System.EventHandler(ComboBox1_SelectedIndexChanged);
         }
 
         private void PraisedSnifferForm_Load(object sender, EventArgs e)
@@ -108,20 +116,23 @@ namespace PraisedSniffer
         {
             var packet = PacketDotNet.Packet.ParsePacket(e.Packet.LinkLayerType, e.Packet.Data);
 
-            // add to the list
-            capturedPackets_list.Add(packetNumber, packet);
-
-
             var ipPacket = (IpPacket)packet.Extract(typeof(IpPacket));
 
 
             if (ipPacket != null)
             {
                 var protocol = ipPacket.Protocol.ToString();
+
+                if (filtroSelecionado != "" && filtroSelecionado != "Todos")
+                {
+                    if (protocol != filtroSelecionado)
+                    {
+                        return;
+                    }
+                }
+                capturedPackets_list.Add(packetNumber, packet);
                 var source = ipPacket.SourceAddress.ToString();
                 var destination = ipPacket.DestinationAddress.ToString();
-
-
 
                 var protocolPacket = ipPacket.PayloadPacket;
 
@@ -132,8 +143,6 @@ namespace PraisedSniffer
 
                 Action action = () => listPackets.Items.Add(item);
                 listPackets.Invoke(action);
-
-
             }
             packetNumber++;
         }
@@ -205,6 +214,15 @@ namespace PraisedSniffer
                         MakeInformationICMPv6(icmpv6Header);
                     }
 
+                }
+                else if (protocol.Contains("IGMP"))
+                {
+                    var igmpv2Packet = (IGMPv2Packet)packet.Extract(typeof(IGMPv2Packet));
+                    if (igmpv2Packet != null)
+                    {
+                        var igmpv2Header = new IGMPv2Header(igmpv2Packet);
+                        MakeInformationIGMPv2(igmpv2Header);
+                    }
                 }
 
                 treeView1.ExpandAll();
@@ -336,6 +354,18 @@ namespace PraisedSniffer
             treeView1.Nodes.Add(icmpv6Node);
         }
 
+        private void MakeInformationIGMPv2(IGMPv2Header igmpHeader)
+        {
+            TreeNode igmpNode = new TreeNode("IGMPv2", new TreeNode[]{
+                    new TreeNode($"Checksum: {igmpHeader.Checksum}"),
+                    new TreeNode($"MaxResponseTime: {igmpHeader.MaxResponseTime}"),
+                    new TreeNode($"GroupAddress: {igmpHeader.GroupAddress}"),
+                    new TreeNode($"Tipo: {igmpHeader.Tipo}")
+            });
+
+            treeView1.Nodes.Add(igmpNode);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             LoadIp2l("");
@@ -389,6 +419,11 @@ namespace PraisedSniffer
                 MessageBox.Show($"Por favor selecione um arquivo válido para o banco de dados para ter acesso as informações do Geo-IP, faça o download em {Properties.Settings.Default.ip2l_url}",
                     "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
