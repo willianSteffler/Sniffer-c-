@@ -220,8 +220,8 @@ namespace PraisedSniffer
                     var igmpv2Packet = (IGMPv2Packet)packet.Extract(typeof(IGMPv2Packet));
                     if (igmpv2Packet != null)
                     {
-                        var igmpv2Header = new IGMPHeader(igmpv2Packet);
-                        MakeInformationIGMP(igmpv2Header);
+                        var igmpv2Header = new IGMPv2Header(igmpv2Packet);
+                        MakeInformationIGMPv2(igmpv2Header);
                     }
                 }
 
@@ -354,9 +354,9 @@ namespace PraisedSniffer
             treeView1.Nodes.Add(icmpv6Node);
         }
 
-        private void MakeInformationIGMP(IGMPHeader igmpHeader)
+        private void MakeInformationIGMPv2(IGMPv2Header igmpHeader)
         {
-            TreeNode igmpNode = new TreeNode("IGMP", new TreeNode[]{
+            TreeNode igmpNode = new TreeNode("IGMPv2", new TreeNode[]{
                     new TreeNode($"Checksum: {igmpHeader.Checksum}"),
                     new TreeNode($"MaxResponseTime: {igmpHeader.MaxResponseTime}"),
                     new TreeNode($"GroupAddress: {igmpHeader.GroupAddress}"),

@@ -3,11 +3,11 @@ using System.Text;
 
 namespace PraisedSniffer
 {
-    public class IGMPHeader
+    public class IGMPv2Header
     {
         private IGMPv2Packet _igmpv2Packet;
 
-        public IGMPHeader(IGMPv2Packet igmpv2Packet)
+        public IGMPv2Header(IGMPv2Packet igmpv2Packet)
         {
             _igmpv2Packet = igmpv2Packet;
         }
